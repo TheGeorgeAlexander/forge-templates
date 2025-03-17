@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import path from "node:path"
 import ForgeTemplates from "./forge.js"
 
 
@@ -66,14 +65,8 @@ Options:
     process.exit(1);
 }
 
-// Get the absolute paths of templates folder and output file
-const templatesFolder = path.resolve(process.cwd(), args[0]);
-const outputFile = path.resolve(process.cwd(), args[1]);
-
 // Parse the options in the command into an options object
-const options = {
-    minify_html: false
-};
+const options = {};
 for(let i = 2; i < args.length; i++) {
     if(args[i].toLowerCase() == "--minify-html") {
         options.minify_html = true;
@@ -82,7 +75,7 @@ for(let i = 2; i < args.length; i++) {
 
 // Build the templates
 try {
-    await ForgeTemplates.build(templatesFolder, outputFile, options);
+    await ForgeTemplates.build(args[0], args[1], options);
 } catch(e) {
     console.log("Build not successful!\n");
     console.error(e.message)
@@ -97,7 +90,3 @@ Example usage in JavaScript:
   ${ANSI.gray}3| ${ANSI.cyan}const ${ANSI.brightMagenta}data ${ANSI.yellow}= { ${ANSI.white}...... ${ANSI.yellow}}${ANSI.white};
   ${ANSI.gray}4| ${ANSI.cyan}const ${ANSI.brightMagenta}renderedHTML ${ANSI.yellow}= ${ANSI.magenta}ForgeTemplates${ANSI.white}.${ANSI.blue}renderTemplate${ANSI.yellow}(${ANSI.green}"<name>"${ANSI.white}, ${ANSI.magenta}data${ANSI.yellow})${ANSI.white};${ANSI.reset}
 `);
-
-
-
-

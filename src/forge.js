@@ -9,23 +9,23 @@ const templateModulePath = new URL("./output/html-template/module.js", import.me
 const templateModule = await fs.promises.readFile(templateModulePath, "utf8");
 
 // The path of the shared-function.js file
-const sharedFucntionsPath = new URL("./output/html-template/shared-functions.js", import.meta.url).pathname;
+const sharedFunctionsPath = new URL("./output/html-template/shared-functions.js", import.meta.url).pathname;
 
 
 export default {
     /**
-     * 
+     * Builds the templates into an module with a .renderTemplate function
      * @param {String} templateFolder The path to a directory with HTML templates
      * @param {String} outputFile The path where the build should be saved
-     * @param {Object} options Object with 
+     * @param {Object} options Object with the options for the build
      * @returns {Promise<Boolean>} True if the build was successful, false otherwise
      */
     async build(templateFolder, outputFile, options = {}) {
         // Check if the template folder exists and is indeed a directory
-        if(!(await fs.promises.stat(path.resolve(process.cwd(), templateFolder))).isDirectory()) {
+        const absoluteTemplateFolder = path.resolve(process.cwd(), templateFolder);
+        if(!(await fs.promises.stat(absoluteTemplateFolder)).isDirectory()) {
             throw new Error(`Template folder is not a valid directory: '${templateFolder}'`);
         }
-
 
         const forgeTemplatesPlugin = {
             name: "ForgeTemplates",
@@ -40,7 +40,7 @@ export default {
         
                 build.onLoad({ namespace: "ForgeTemplates", filter: /.*/ }, async args => {
                     // Get all files in the template folder (and sub-folders)
-                    const allTemplates = await fs.promises.readdir(templateFolder, { withFileTypes: true, recursive: true });
+                    const allTemplates = await fs.promises.readdir(absoluteTemplateFolder, { withFileTypes: true, recursive: true });
         
                     // Go through all files and build the js script and name-to-module object
                     let contents = "";
@@ -77,7 +77,7 @@ export default {
                     }
         
                     return {
-                        contents: templateModule.replace("{{PATH}}", sharedFucntionsPath).replace("{{HTML}}", html),
+                        contents: templateModule.replace("{{PATH}}", sharedFunctionsPath).replace("{{HTML}}", html),
                         loader: "js",
                     }
                 });
