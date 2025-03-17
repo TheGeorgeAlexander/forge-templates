@@ -11,5 +11,14 @@
   "license": "MIT",
   "author": "George Alexander",
   "type": "module",
-  "main": "src/forge.js"
+  "scripts": {
+    "build": "node src/cli.js"
+  },
+  "main": "src/forge.js",
+  "bin": {
+    "forge-templates": "src/cli.js"
+  },
+  "dependencies": {
+    "esbuild": "^0.25.1"
+  }
 }
