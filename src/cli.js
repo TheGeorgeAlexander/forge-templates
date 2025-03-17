@@ -85,8 +85,8 @@ try {
 console.log(`Build successful!
 
 Example usage in JavaScript:
-  ${ANSI.gray}1| ${ANSI.yellow}import ${ANSI.brightMagenta}ForgeTemplates ${ANSI.yellow}from ${ANSI.green}"${args[1]}"${ANSI.white};
+  ${ANSI.gray}1| ${ANSI.yellow}import { ${ANSI.brightMagenta}renderTemplate ${ANSI.yellow}} from ${ANSI.green}"${args[1]}"${ANSI.white};
   ${ANSI.gray}2|
   ${ANSI.gray}3| ${ANSI.cyan}const ${ANSI.brightMagenta}data ${ANSI.yellow}= { ${ANSI.white}...... ${ANSI.yellow}}${ANSI.white};
-  ${ANSI.gray}4| ${ANSI.cyan}const ${ANSI.brightMagenta}renderedHTML ${ANSI.yellow}= ${ANSI.magenta}ForgeTemplates${ANSI.white}.${ANSI.blue}renderTemplate${ANSI.yellow}(${ANSI.green}"<name>"${ANSI.white}, ${ANSI.magenta}data${ANSI.yellow})${ANSI.white};${ANSI.reset}
+  ${ANSI.gray}4| ${ANSI.cyan}const ${ANSI.brightMagenta}renderedHTML ${ANSI.yellow}= ${ANSI.blue}renderTemplate${ANSI.yellow}(${ANSI.green}"<name>"${ANSI.white}, ${ANSI.brightMagenta}data${ANSI.yellow})${ANSI.white};${ANSI.reset}
 `);
