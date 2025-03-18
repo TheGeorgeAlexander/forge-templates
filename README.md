@@ -151,6 +151,7 @@ The first is `forEach`. It loops through the given array and executes the given 
 map the values to strings that will be inserted into the template.
 
 `forEach(array, callback)`
+
 Example:
 ```html
 <ul>
@@ -165,6 +166,7 @@ template. The given callback is executed during rendering and the given `echo` f
 to have HTML output.
 
 `execute(callback)`
+
 Example:
 ```html
 <ul>
