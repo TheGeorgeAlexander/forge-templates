@@ -14,6 +14,12 @@
   "scripts": {
     "build": "node src/cli.js"
   },
+  "homepage": "https://github.com/TheGeorgeAlexander/forge-templates#readme",
+  "bugs": "https://github.com/TheGeorgeAlexander/forge-templates/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheGeorgeAlexander/forge-templates.git"
+  },
   "main": "src/forge.js",
   "bin": {
     "forge-templates": "src/cli.js"

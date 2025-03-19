@@ -5,7 +5,7 @@ script with the `forge-templates` CLI or using `ForgeTemplates.build(....)` in y
 
 ### Features
 - Full JavaScript support in the templates, without using `eval`, `new Function` or similar functions
-- Template inheritance, a template can extend a base template and replace its defined content blocks (see [Tempalte Inheritance](#template-inheritance))
+- Template inheritance, a template can extend a base template and replace its defined content blocks (see [Template Inheritance](#template-inheritance))
 - Helper functions make it easy to render an array of data, or execute arbitrary JavaScript in a template (see [Helper Functions](#helper-functions))
 - Building can be done with the CLI, or programmatically with the JavaScript API (see [Building the Templates](#building-the-templates))
 - After building, it requires no Node.js or Web APIs, so it's compatible with all execution environments
