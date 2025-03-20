@@ -107,9 +107,9 @@ optional. An example of a base template with content blocks is below.
     </head>
 
     <body>
-        {"{{ content }}"}
+        ${"{{ content }}"}
         <p>This will be removed if a template extends this one and overrides the "content" content block</p>
-        {"{{ end }}"}
+        ${"{{ end }}"}
     </body>
 </html>
 ```
