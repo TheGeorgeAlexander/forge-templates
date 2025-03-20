@@ -41,7 +41,7 @@ export default {
                 build.onLoad({ namespace: "ForgeTemplates", filter: /.*/ }, async args => {
                     // Get all files in the template folder (and sub-folders)
                     const allTemplates = await fs.promises.readdir(absoluteTemplateFolder, { withFileTypes: true, recursive: true });
-        
+
                     // Go through all files and build the js script and name-to-module object
                     let contents = "";
                     const templateNames = {};
@@ -50,9 +50,10 @@ export default {
         
                         // Check if this file is a template HTML file
                         if(file.isFile() && file.name.endsWith(".tmpl.html")) {
-                            const templateName = file.name.replace(/\.tmpl\.html$/, "");
+                            const fullTemplatePath = file.parentPath + "/" + file.name;
+                            const templateName = fullTemplatePath.replace(absoluteTemplateFolder + "/", "").replace(/\.tmpl\.html$/, "");
                             templateNames[templateName] = "template" + i;
-                            contents += `import * as template${i} from "${file.parentPath}/${file.name}"\n`
+                            contents += `import * as template${i} from "${fullTemplatePath}"\n`
                         }
                     }
         
