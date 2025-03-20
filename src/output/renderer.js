@@ -39,7 +39,7 @@ export function renderTemplate(name, data) {
 
     // Make sure the template we want to extend from exists
     if(!templateModules[extendsTemplate]) {
-        throw new Error(`No such HTML template to extend from: '${templateResponse.extendsTemplate}'`);
+        throw new Error(`No such HTML template to extend from: '${extendsTemplate}'`);
     }
     
     // The template extends a base template, so extract the content blocks
