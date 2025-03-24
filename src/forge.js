@@ -18,7 +18,6 @@ export default {
      * @param {String} templateFolder The path to a directory with HTML templates
      * @param {String} outputFile The path where the build should be saved
      * @param {Object} options Object with the options for the build
-     * @returns {Promise<Boolean>} True if the build was successful, false otherwise
      */
     async build(templateFolder, outputFile, options = {}) {
         // Check if the template folder exists and is indeed a directory
