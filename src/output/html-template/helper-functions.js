@@ -36,3 +36,19 @@ export function execute(func) {
     // Return everything as one string
     return echoTexts.join("");
 }
+
+
+
+/**
+ * Returns body1 if the condition is true, returns body2 if the condition is false
+ * @param {Boolean} condition Anything that can evaluate to true or false
+ * @param {String} body1 The string that is returned if the condition is true
+ * @param {String} body2 The string that is returned if the condition is false
+ * @returns {String} Returns body1 if the condition is true, body2 if false
+ */
+export function renderIf(condition, body1, body2 = "") {
+    if(condition) {
+        return body1;
+    }
+    return body2;
+}

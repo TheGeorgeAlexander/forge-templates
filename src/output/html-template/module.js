@@ -3,7 +3,7 @@
  * The HTML template is embedded at the placeholder. The import placeholder is replaced with the correct
  * path to the helper-functions.js file.
  */
-import { forEach, execute } from "{{PATH}}";
+import { forEach, execute, renderIf } from "{{PATH}}";
 
 
 export function getHTML(data) {

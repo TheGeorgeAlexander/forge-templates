@@ -107,8 +107,8 @@ optional. An example of a base template with content blocks is below.
     </head>
 
     <body>
-        ${"{{ content }}"}
-        <p>This will be removed if a template extends this one and overrides the "content" content block</p>
+        ${"{{ body }}"}
+        <p>This will be removed if a template extends this one and overrides the "body" content block</p>
         ${"{{ end }}"}
     </body>
 </html>
@@ -125,7 +125,7 @@ ${"{{ html_head }}"}
 <link rel="stylesheet" href="/assets/contact.css">
 ${"{{ end }}"}
 
-${"{{ content }}"}
+${"{{ body }}"}
 <p>Contact us at mail@example.com</p>
 ${"{{ end }}"}
 ```
@@ -145,29 +145,46 @@ Rendering the `contact` template would result into the following output.
 
 
 ### Helper Functions
-There are a few helpful utility functions available in templates. 
+There are a few helpful utility functions available in templates. They are quickly explained below. The implementation
+of these functions can be found in `src/output/html-template/helper-functions.js`.
 
-The first is `forEach`. It loops through the given array and executes the given callback for every item, which should
-map the values to strings that will be inserted into the template.
+---
 
-`forEach(array, callback)`
+`forEach(array: any[], callback: Function): string`
 
-Example:
+This function loops through the given array and executes the given callback for every item. The callback is called with
+three parameters, the item, index of the item, and the array itself.
 ```html
 <ul>
-    ${forEach(data.someArray, (itemOfArray, index, theArray) => {
-        return `<li>The item is: ${itemOfArray}</li>`;
-    })}
+    ${forEach(data.someArray, (itemOfArray, index, theArray) => `
+        <li>The item is: ${itemOfArray}</li>
+    `)}
 </ul>
 ```
 
-The second helper function is `execute`. This is a function designed to allow for arbitrary JavaScript execution in the
+---
+
+`renderIf(condition: boolean, body1: string, body2?: string): string`
+
+This is a simple shortcut to have content rendered or not based on a condition. It is an if-statement. It renders body1
+if the condition is true, it renders body2 if the condition is false. The body2 is optional, you don't have to provide it.
+```html
+<div>
+    ${renderIf(data.success, `
+        <p>It was all successful</p>
+    `, `
+        <p>There was an error</p>
+    `)}
+</div>
+```
+
+---
+
+`execute(func: Function): string`
+
+`execute` is a function designed to allow for arbitrary JavaScript execution in the
 template. The given callback is executed during rendering and the given `echo` function in the callback can be used
 to have HTML output.
-
-`execute(callback)`
-
-Example:
 ```html
 <ul>
     ${execute(echo => {
@@ -203,7 +220,7 @@ Options:
 To assist with more automated ways of building the templates, you can also build by calling a function in JavaScript.
 An example of this is below.
 ```js
-import ForgeTemplates from "forge-templates"
+import ForgeTemplates from "forge-templates";
 
 // Options are optional
 const options = {
