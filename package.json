@@ -1,7 +1,7 @@
 {
   "name": "forge-templates",
   "version": "1.2.0",
-  "description": "A library for rendering dynamic HTML templates with embedded server-side JavaScript without using eval.",
+  "description": "A package for rendering dynamic HTML templates with embedded server-side JavaScript without using eval.",
   "keywords": [
     "html",
     "templates",

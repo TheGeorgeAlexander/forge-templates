@@ -1,5 +1,5 @@
 # Forge Templates
-Forge Templates is library for rendering dynamic HTML templates with embedded server-side JavaScript.
+Forge Templates is package for rendering dynamic HTML templates with embedded server-side JavaScript.
 The templates fully support JavaScript by being embedded into a script at build time. You build the templates into a 
 script with the `forge-templates` CLI or using `ForgeTemplates.build(....)` in your own build script.
 
@@ -32,9 +32,9 @@ Template file: `src/templates/names.tmpl.html`
         <h1>${data.title}</h1>
         <p>${data.description}</p>
         <ul>
-            ${forEach(data.names, (name, index) => {
-                return `<li>Name ${index}: ${name}</li>`;
-            })}
+            ${forEach(data.names, (name, index) => `
+                <li>Name ${index}: ${name}</li>
+            `)}
         </ul>
     </body>
 </html>
