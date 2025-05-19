@@ -55,21 +55,34 @@ const ANSI = {
 const args = process.argv.slice(2);
 if (args.length < 2) {
     console.log(`
+${ANSI.bgRed} ERROR ${ANSI.reset} Incorrect CLI usage
+
 Usage: ${ANSI.green}forge-templates <folder> <file> [options...]${ANSI.reset}
 Parameters:
     ${ANSI.green}folder${ANSI.reset}            The folder with your template files
     ${ANSI.green}file${ANSI.reset}              Location to save the built script to, a JavaScript file
 Options:
     ${ANSI.green}--minify-html${ANSI.reset}     Enables a basic HTML minifier to make the output script smaller
+    ${ANSI.green}--only-errors${ANSI.reset}     CLI only; Print errors but don't print success messages
 `);
     process.exit(1);
 }
 
 // Parse the options in the command into an options object
 const options = {};
+let onlyError = false;
 for(let i = 2; i < args.length; i++) {
-    if(args[i].toLowerCase() == "--minify-html") {
-        options.minify_html = true;
+    switch(args[i].toLowerCase()) {
+        case "--minify-html":
+            options.minify_html = true;
+            break;
+
+        case "--only-errors":
+            onlyError = true;
+            break;
+    
+        default:
+            break;
     }
 }
 
@@ -82,7 +95,8 @@ try {
     process.exit(1);
 }
 
-console.log(`Build successful!
+if(!onlyError) {
+    console.log(`Build successful!
 
 Example usage in JavaScript:
   ${ANSI.gray}1| ${ANSI.yellow}import { ${ANSI.brightMagenta}renderTemplate ${ANSI.yellow}} from ${ANSI.green}"${args[1]}"${ANSI.white};
@@ -90,3 +104,4 @@ Example usage in JavaScript:
   ${ANSI.gray}3| ${ANSI.cyan}const ${ANSI.brightMagenta}data ${ANSI.yellow}= { ${ANSI.white}...... ${ANSI.yellow}}${ANSI.white};
   ${ANSI.gray}4| ${ANSI.cyan}const ${ANSI.brightMagenta}renderedHTML ${ANSI.yellow}= ${ANSI.blue}renderTemplate${ANSI.yellow}(${ANSI.green}"<name>"${ANSI.white}, ${ANSI.brightMagenta}data${ANSI.yellow})${ANSI.white};${ANSI.reset}
 `);
+}

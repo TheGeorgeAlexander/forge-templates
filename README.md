@@ -214,6 +214,7 @@ Parameters:
     file              Location to save the built script to, a JavaScript file
 Options:
     --minify-html     Enables a basic HTML minifier to make the output script smaller
+    --only-errors     CLI only; Print errors but don't print success messages
 ```
 
 ### JavaScript API

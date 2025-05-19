@@ -1,12 +1,13 @@
 {
   "name": "forge-templates",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "A package for rendering dynamic HTML templates with embedded server-side JavaScript without using eval.",
   "keywords": [
     "html",
     "templates",
     "template",
-    "render"
+    "render",
+    "ssr"
   ],
   "license": "MIT",
   "author": "George Alexander",
